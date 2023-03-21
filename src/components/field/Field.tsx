@@ -1,14 +1,14 @@
 import { FC } from 'react';
 import { InputProps } from '../../types';
 
-const getPropsByType = (type: string) => {
-  if (type === 'emailInput')
+const getPropsByType = (type: string, label: string) => {
+  if (type === 'inputEmail')
     return {
       inputType: 'email',
       placeholder: 'email@example.com',
     };
 
-  if (type === 'passwordInput')
+  if (type === 'inputPassword')
     return {
       inputType: 'password',
       placeholder: 'Введите пароль',
@@ -16,13 +16,13 @@ const getPropsByType = (type: string) => {
 
   return {
     inputType: 'text',
-    placeholder: '',
+    placeholder: label,
   };
 };
 
 const Field: FC<InputProps> = (props) => {
   const { id, type, label, required, defaultValue } = props.field;
-  const { inputType, placeholder } = getPropsByType(type);
+  const { inputType, placeholder } = getPropsByType(type, label);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.setValues(id, event.target.value);
