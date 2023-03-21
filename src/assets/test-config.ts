@@ -1,0 +1,27 @@
+import { Config } from '../types';
+
+export const config: Config = [
+  {
+    id: 'first_name',
+    type: 'inputText',
+    label: 'First Name',
+    defaultValue: 'Some first name',
+  },
+  {
+    id: 'last_name',
+    type: 'inputText',
+    label: 'Last Name',
+  },
+  {
+    id: 'email',
+    type: 'inputEmail',
+    label: 'Email',
+    required: true,
+  },
+  {
+    id: 'password',
+    type: 'inputPassword',
+    label: 'Password',
+    required: true,
+  },
+];
