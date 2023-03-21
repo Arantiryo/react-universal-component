@@ -1,0 +1,8 @@
+.render-group {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  gap: 20px;
+
+  margin-bottom: 40px;
+}

@@ -51,7 +51,7 @@ const RenderGroup: FC<RenderGroupProps> = forwardRef((props, ref) => {
   };
 
   return (
-    <div>
+    <div className="render-group">
       {config.map((field: GroupField) => {
         return (
           <Field key={field.id} field={field} setValues={updateFieldValue} />

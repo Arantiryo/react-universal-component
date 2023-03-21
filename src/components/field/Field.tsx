@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { InputProps } from '../../types';
+import '../Field/Field.css';
 
 const getPropsByType = (type: string, label: string) => {
   if (type === 'inputEmail')
@@ -30,9 +31,12 @@ const Field: FC<InputProps> = (props) => {
 
   return (
     <div className="input-wrapper">
-      <label htmlFor={id}>{label} </label>
+      <label hidden className="input-wrapper__label" htmlFor={id}>
+        {label}{' '}
+      </label>
       <input
         id={id}
+        className="input-wrapper__input"
         type={inputType}
         placeholder={placeholder}
         required={required}

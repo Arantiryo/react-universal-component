@@ -3,6 +3,7 @@ import './App.css';
 import { config } from './assets/test-config';
 import RenderGroup from './components/RenderGroup/RenderGroup';
 import { RenderGroupExposedMethods } from './types';
+import reactLogo from './assets/react.svg';
 
 function App() {
   const renderGroupRef = useRef<RenderGroupExposedMethods>();
@@ -21,15 +22,16 @@ function App() {
 
   return (
     <main className="app">
-      <p className="app__name">Sample text</p>
-      <form onSubmit={getRenderGroupRef}>
+      <img className="react-logo" src={reactLogo} alt="react logo" />
+      <p className="app-name">Sample text</p>
+      <form className="form" onSubmit={getRenderGroupRef}>
         <RenderGroup
           config={config}
           setSubmitDisabled={setSubmitDisabled}
           /* @ts-ignore */
           ref={renderGroupRef}
         />
-        <button disabled={submitDisabled} type="submit">
+        <button className="submit" disabled={submitDisabled} type="submit">
           Submit
         </button>
       </form>

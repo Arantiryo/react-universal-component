@@ -3,6 +3,11 @@
   line-height: 1.5;
   font-weight: 400;
 
+  --white: #ffffff;
+  --grey: #f9f9f9;
+  --orange: #ff6342;
+  --orange-faded: rgba(255, 99, 66, 0.5);
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -10,12 +15,24 @@
   -webkit-text-size-adjust: 100%;
 }
 
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
+
+  width: 100vw;
+  height: 100vh;
+
   display: flex;
   place-items: center;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
+
+  background-color: var(--grey);
 }
