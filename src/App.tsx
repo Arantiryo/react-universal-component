@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import './App.css';
 import { config } from './assets/test-config';
 import RenderGroup from './components/RenderGroup';
@@ -6,20 +6,33 @@ import { RenderGroupExposedMethods } from './types';
 
 function App() {
   const renderGroupRef = useRef<RenderGroupExposedMethods>();
+  const [submitDisabled, setSubmitDisabled] = useState(true);
 
-  const getRenderGroupRef = () => {
-    // TODO
+  const getRenderGroupRef = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     if (renderGroupRef && renderGroupRef.current) {
-      console.log(renderGroupRef.current.getCurrentValues());
+      const fields = renderGroupRef.current.getCurrentValues();
+      alert(
+        `Form submitted, field values are \n${JSON.stringify(fields, null, 2)}`
+      );
     }
   };
 
   return (
     <main className="app">
       <p className="app__name">Sample text</p>
-      {/* @ts-ignore */}
-      <RenderGroup config={config} ref={renderGroupRef} />
-      <button onClick={getRenderGroupRef}>Click me</button>
+      <form onSubmit={getRenderGroupRef}>
+        <RenderGroup
+          config={config}
+          setSubmitDisabled={setSubmitDisabled}
+          /* @ts-ignore */
+          ref={renderGroupRef}
+        />
+        <button disabled={submitDisabled} type="submit">
+          Submit
+        </button>
+      </form>
     </main>
   );
 }

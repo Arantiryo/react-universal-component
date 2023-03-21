@@ -1,4 +1,10 @@
-import { FC, forwardRef, useImperativeHandle, useState } from 'react';
+import {
+  FC,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from 'react';
 import { Config, GroupField, RenderGroupProps } from '../types';
 import Field from './field/Field';
 import './RenderGroup.css';
@@ -10,16 +16,26 @@ const getDefaultFieldValues = (config: Config) =>
   }, {} as Record<string, string>);
 
 const RenderGroup: FC<RenderGroupProps> = forwardRef((props, ref) => {
-  const { config } = props;
-  const defaultFieldValues = getDefaultFieldValues(config);
-  const [values, setValues] = useState(defaultFieldValues);
+  const { config, setSubmitDisabled } = props;
+  const [values, setValues] = useState(getDefaultFieldValues(config));
+
+  const validateFields = (values: Record<string, string>) => {
+    return config.filter((item) => item.required && values[item.id] === '');
+  };
+
+  useEffect(() => {
+    if (validateFields(values).length === 0) {
+      setSubmitDisabled(false);
+    } else {
+      setSubmitDisabled(true);
+    }
+  }, [values]);
 
   useImperativeHandle(
     ref,
     () => {
       return {
         getCurrentValues() {
-          console.log(values);
           return values;
         },
       };
