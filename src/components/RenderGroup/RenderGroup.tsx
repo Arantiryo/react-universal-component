@@ -5,8 +5,8 @@ import {
   useImperativeHandle,
   useState,
 } from 'react';
-import { Config, GroupField, RenderGroupProps } from '../types';
-import Field from './field/Field';
+import { Config, GroupField, RenderGroupProps } from '../../types';
+import Field from '../Field/Field';
 import './RenderGroup.css';
 
 const getDefaultFieldValues = (config: Config) =>

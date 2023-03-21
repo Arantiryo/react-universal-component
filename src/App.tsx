@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import './App.css';
 import { config } from './assets/test-config';
-import RenderGroup from './components/RenderGroup';
+import RenderGroup from './components/RenderGroup/RenderGroup';
 import { RenderGroupExposedMethods } from './types';
 
 function App() {
