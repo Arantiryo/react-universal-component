@@ -12,7 +12,7 @@ const getPropsByType = (type: string, label: string) => {
   if (type === 'inputPassword')
     return {
       inputType: 'password',
-      placeholder: 'Введите пароль',
+      placeholder: 'Enter password',
     };
 
   return {
@@ -22,11 +22,17 @@ const getPropsByType = (type: string, label: string) => {
 };
 
 const Field: FC<InputProps> = (props) => {
-  const { id, type, label, required, defaultValue } = props.field;
+  const { id, type, label, required } = props.field;
   const { inputType, placeholder } = getPropsByType(type, label);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.setValues(id, event.target.value);
+  };
+
+  const handleReset = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
+    props.setValues(id, '');
   };
 
   return (
@@ -40,9 +46,12 @@ const Field: FC<InputProps> = (props) => {
         type={inputType}
         placeholder={placeholder}
         required={required}
-        defaultValue={defaultValue}
+        value={props.values[id]}
         onChange={handleChange}
       />
+      <button className="input-wrapper__reset" onClick={handleReset}>
+        {props.values[id] !== '' ? 'x' : null}
+      </button>
     </div>
   );
 };

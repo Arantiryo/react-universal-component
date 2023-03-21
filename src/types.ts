@@ -6,6 +6,7 @@ export type RenderGroupProps = {
 export type InputProps = {
   field: GroupField;
   setValues: (id: string, newValue: string) => void;
+  values: Record<string, string>;
 };
 
 export type RenderGroupExposedMethods = {
